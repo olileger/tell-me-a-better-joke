@@ -31,13 +31,15 @@ app.get('/', async (req, res) =>
     const apiVersion = "2024-04-01-preview";
     const deployment = process.env["AZURE_OPENAI_MODEL"];
     const prompt = "You are a joke teller."
-                 + "Your are with a friend."
-                 + "This friend tells you a joke."
+                 + "Someone tells you a joke as an input."
                  + "Based on this joke you invent a better one."
+                 + "You should be funny and original."
+                 + "You should create only one joke."
                  + "Your joke should be as short as the original one."
-                 + "You should only provide a joke, it's not a conversation."
-                 + "Here is the joke:"
-                 + joke;
+                 + "Here is the input joke:"
+                 + "### Beginning of the joke ###"
+                 + joke
+                 + "### End of the joke ###";
 
     // Call the Azure OpenAI API
     try
