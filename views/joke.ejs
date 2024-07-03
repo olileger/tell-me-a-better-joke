@@ -1,15 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tell Me a Better Joke</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h2>Hey I got a joke:</h2>
-    <p><%= joke.question %></p>
-    <p><%= joke.answer %></p>
 
-    <h2>... ok, but I got a better joke:</h2>
-    <p><%= betterjoke %></p>
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Alice</strong>: "Hey Bob, I got a joke"</h5>
+                        <p class="card-text">
+                            <p><%= joke.question %></p>
+                            <p><%= joke.answer %></p>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Bob</strong>: "Ok Alice, but I got a better one"</h5>
+                        <p class="card-text">
+                            <p><%= betterjoke %></p>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
