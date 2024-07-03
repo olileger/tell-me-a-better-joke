@@ -5,16 +5,19 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 app.get('/', async (req, res) =>
 {
-    let joke = '';
+    let joke = {};
 
     // Call the joke API
     try
     {
         const response = await axios.get('https://official-joke-api.appspot.com/random_joke');
-        joke = "<h2>Hey I got a joke:</h2>" + response.data.setup + "<br/>" + response.data.punchline;
+        joke.question = response.data.setup;
+        joke.answer = response.data.punchline;
     } catch (error)
     {
         console.error(error);
@@ -32,6 +35,7 @@ app.get('/', async (req, res) =>
                  + "This friend tells you a joke."
                  + "Based on this joke you invent a better one."
                  + "Your joke should be as short as the original one."
+                 + "You should only provide a joke, it's not a conversation."
                  + "Here is the joke:"
                  + joke;
 
@@ -43,7 +47,7 @@ app.get('/', async (req, res) =>
 
         for (const choice of result.choices)
         {
-            betterjoke += choice.text + "<br/>";
+            betterjoke += choice.text;
         }
     }
     catch (error)
@@ -52,7 +56,7 @@ app.get('/', async (req, res) =>
         res.status(500).send('Error retrieving better joke');
     }
 
-    res.send(joke + "<br/><br/><h2>... ok, but I got a better joke:</h2>" + betterjoke);
+    res.render("joke", { joke: joke, betterjoke: betterjoke });
 });
 
 app.listen(3000, () =>
