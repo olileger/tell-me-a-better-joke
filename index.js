@@ -61,7 +61,8 @@ app.get('/', async (req, res) =>
     res.render("joke", { joke: joke, betterjoke: betterjoke });
 });
 
-app.listen(3000, () =>
+let appPort = process.env["APP_LISTENING_PORT"] || 3000;
+app.listen(appPort, () =>
 {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port ' + appPort);
 });
